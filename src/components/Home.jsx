@@ -7,7 +7,7 @@ const Home = () => {
       <div className="container mx-auto px-6 text-center">
         <p className="text-lg text-gray-600 dark:text-gray-400">First Edition of IIChE-TI Hardware Hackathon</p>
         <h1 className="text-4xl md:text-6xl font-bold my-4">
-          IICHE-CHEMATHON <span className="text-blue-600 dark:text-blue-400">2025</span>
+          IICHE-CHEMATHON <span className="text-blue-600 dark:text-blue-400">2026</span>
         </h1>
         <h2 className="text-2xl md:text-3xl font-semibold my-4">
           <span className="text-gray-700 dark:text-gray-300">THEME:</span> Redefining Progress Through Sustainable Solutions
