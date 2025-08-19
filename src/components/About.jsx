@@ -1,10 +1,10 @@
-import galleryImg1 from "./../assets/galleryfinal.jpeg"
-import galleryImg2 from "./../assets/gallery1.jpeg"
+import galleryImg1 from "./../assets/galleryfinal.jpeg";
+import galleryImg2 from "./../assets/gallery1.jpeg";
 
 const About = () => {
   return (
     <section id="about" className="py-20 bg-white dark:bg-gray-800">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <h2 className="text-4xl font-bold text-center mb-12 text-blue-600 dark:text-blue-400">
           About
@@ -37,36 +37,54 @@ const About = () => {
                 hardware hackathon{" "}
               </span>
               organized by the Indian Institute of Chemical Engineers (IIChE)
-              and the Indian Chemical Society (ICS), is a unique event uniting
-              students from diverse engineering disciplines.
+              and the Indian Chemical Society (ICS), is a unique event that
+              unites students from diverse engineering disciplines to develop{" "}
+              <span className="text-green-600 font-medium">
+                innovative hardware solutions
+              </span>{" "}
+              aligned with the{" "}
+              <span className="font-semibold">
+                United Nations’ Sustainable Development Goals (SDG6, SDG7, SDG9,
+                SDG11, SDG12, SDG13)
+              </span>
+              .
             </p>
 
             <p className="text-lg leading-relaxed mb-4 text-gray-700 dark:text-gray-300">
-              Aligned with the
-              <span className="font-semibold">
-                {" "}
-                United Nations’ Sustainable Development Goals
-              </span>
-              , the hackathon challenges participants to design{" "}
+              The hackathon provides a platform for participants to tackle{" "}
               <span className="text-green-600 font-medium">
-                sustainable, impactful solutions
+                real-world challenges
               </span>{" "}
-              addressing real-world problems in areas such as
+              in areas such as
               <span className="italic">
                 {" "}
                 sustainability, process optimization, and industrial innovation
+              </span>
+              , while fostering{" "}
+              <span className="font-semibold">
+                collaborative problem-solving
+              </span>
+              , hands-on project development, and{" "}
+              <span className="font-semibold">
+                mentoring from industry experts
               </span>
               .
             </p>
 
             <p className="text-lg leading-relaxed mb-6 text-gray-700 dark:text-gray-300">
               With its 36-hour grand finale,{" "}
-              <span className="font-semibold">ChEMATHON 2026 </span>
-              promises to push the boundaries of creativity and technology,
-              offering a platform where
+              <span className="font-semibold">ChEMATHON 2026</span> promises to
+              push the boundaries of{" "}
               <span className="text-blue-500 font-medium">
-                {" "}
-                innovation meets sustainability
+                creativity and technological advancement
+              </span>
+              , bringing together{" "}
+              <span className="font-semibold">
+                students, researchers, and professionals
+              </span>{" "}
+              from across the country in a dynamic celebration of{" "}
+              <span className="text-blue-500 font-medium">
+                innovation and sustainability
               </span>
               .
             </p>
