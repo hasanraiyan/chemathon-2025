@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// ProblemStatements component - merged UI + framer-motion modal
-// Includes a smooth closing animation using `isClosing` state so the
-// modal fades/scale-down gently before unmounting.
+
 
 export default function ProblemStatements() {
-  const CLOSE_ANIM_DURATION = 320; // ms - keep in sync with transition durations
-
+  const CLOSE_ANIM_DURATION = 320;
   const problems = [
     {
       id: 'sdg6',
@@ -36,7 +33,6 @@ export default function ProblemStatements() {
   const [selected, setSelected] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
 
-  // lock body scroll when modal open
   useEffect(() => {
     document.body.style.overflow = selected && !isClosing ? 'hidden' : '';
     return () => (document.body.style.overflow = '');
@@ -63,13 +59,13 @@ export default function ProblemStatements() {
     visible: { opacity: 1, y: 0, transition: { ease: 'easeOut' } },
   };
 
-  // Open handler - ensures we aren't in closing state
+  
   function openCard(problem) {
     setIsClosing(false);
     setSelected(problem);
   }
 
-  // Smooth close: start a short animation, then unmount after a timeout
+
   function closeModal() {
     setIsClosing(true);
     setTimeout(() => {
@@ -121,12 +117,12 @@ export default function ProblemStatements() {
               transition={{ duration: CLOSE_ANIM_DURATION / 1000, ease: 'easeInOut' }}
             />
 
-            {/* Expanded card - shares layoutId with the clicked card for a morph effect */}
+            
             <motion.div
               layoutId={selected.id}
               className="relative z-50 max-w-2xl w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl shadow-2xl p-8 overflow-auto max-h-[85vh]"
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              // animate between open / closing states for a smooth close
+           
               animate={isClosing ? { opacity: 0, y: 12, scale: 0.995 } : { opacity: 1, y: 0, scale: 1 }}
               initial={false}
             >
@@ -143,7 +139,7 @@ export default function ProblemStatements() {
                 <h3 className="text-2xl font-extrabold">{selected.title}</h3>
               </div>
 
-              {/* If there are details, show them with staggered animation */}
+              {/* If there are details, show them with animation */}
               {selected.details && (
                 <motion.ol
                   className="list-decimal ml-6 space-y-3 text-gray-700 dark:text-gray-300"

@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Terms from './Terms';
 import Privacy from './Privacy';
 
-// This is a footer component for a website, which now uses Lucide React icons
-// for its social media links for better maintainability and consistency.
 export default function Footer() {
   const year = new Date().getFullYear();
   const [openDoc, setOpenDoc] = useState(null); // 'privacy' | 'terms' | null
@@ -23,11 +21,11 @@ export default function Footer() {
                 A student-led challenge to design sustainable solutions for real-world problems.
               </p>
 
-              {/* Replaced the SVG icons with lucide-react components */}
+              
               <div className="mt-4 flex items-center gap-3">
                 <a
                   aria-label="GitHub"
-                  href="https://github.com/your-org"
+                  href="#"
                   className="hover:opacity-80"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -37,7 +35,7 @@ export default function Footer() {
 
                 <a
                   aria-label="LinkedIn"
-                  href="https://linkedin.com"
+                  href="#"
                   className="hover:opacity-80"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -47,7 +45,7 @@ export default function Footer() {
 
                 <a
                   aria-label="Instagram"
-                  href="https://instagram.com"
+                  href="#"
                   className="hover:opacity-80"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -72,7 +70,7 @@ export default function Footer() {
               <div>
                 <h5 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Support</h5>
                 <ul className="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                  <li><a href="mailto:team@mitmuzaffarpur.edu" className="hover:underline">Contact: team@mitmuzaffarpur.edu</a></li>
+                  <li><a href="mailto:team@mitmuzaffarpur.edu"  className="hover:underline">Contact: team@mitmuzaffarpur.edu</a></li> // email to be updated
                   <li><a href="#sponsors" className="hover:underline">Sponsors</a></li>
                   <li><a href="#volunteer" className="hover:underline">Volunteer</a></li>
                 </ul>
