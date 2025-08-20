@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-
-
+// This component displays a list of Sustainable Development Goal (SDG) problem statements.
+// Clicking a card opens a full-screen modal with more details.
+// The modal now closes instantly without a transition.
 export default function ProblemStatements() {
-  const CLOSE_ANIM_DURATION = 320;
+  // We no longer need CLOSE_ANIM_DURATION or isClosing state since the animation is removed.
   const problems = [
     {
       id: 'sdg6',
@@ -31,12 +32,13 @@ export default function ProblemStatements() {
   ];
 
   const [selected, setSelected] = useState(null);
-  const [isClosing, setIsClosing] = useState(false);
 
+  // This effect ensures the background doesn't scroll when the modal is open.
+  // It now only depends on the `selected` state.
   useEffect(() => {
-    document.body.style.overflow = selected && !isClosing ? 'hidden' : '';
+    document.body.style.overflow = selected ? 'hidden' : '';
     return () => (document.body.style.overflow = '');
-  }, [selected, isClosing]);
+  }, [selected]);
 
   const listVariants = {
     hidden: { opacity: 0, y: 8 },
@@ -59,19 +61,14 @@ export default function ProblemStatements() {
     visible: { opacity: 1, y: 0, transition: { ease: 'easeOut' } },
   };
 
-  
+  // This function sets the selected problem to open the modal.
   function openCard(problem) {
-    setIsClosing(false);
     setSelected(problem);
   }
 
-
+  // This function now closes the modal instantly.
   function closeModal() {
-    setIsClosing(true);
-    setTimeout(() => {
-      setSelected(null);
-      setIsClosing(false);
-    }, CLOSE_ANIM_DURATION);
+    setSelected(null);
   }
 
   return (
@@ -106,25 +103,23 @@ export default function ProblemStatements() {
             className="fixed inset-0 z-50 flex items-start justify-center p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            // The modal now exits instantly without an animation
+            exit={{ opacity: 0, transition: { duration: 0 } }}
           >
-            {/* Backdrop - uses isClosing to animate out */}
+            {/* Backdrop */}
             <motion.div
               className="absolute inset-0 bg-black/50"
               onClick={closeModal}
               initial={{ opacity: 0 }}
-              animate={isClosing ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: CLOSE_ANIM_DURATION / 1000, ease: 'easeInOut' }}
+              animate={{ opacity: 1 }}
+              // The backdrop exits instantly as well
+              exit={{ opacity: 0, transition: { duration: 0 } }}
             />
 
-            
             <motion.div
-              layoutId={selected.id}
+              // Removed the layoutId prop to prevent the closing animation.
               className="relative z-50 max-w-2xl w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl shadow-2xl p-8 overflow-auto max-h-[85vh]"
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-           
-              animate={isClosing ? { opacity: 0, y: 12, scale: 0.995 } : { opacity: 1, y: 0, scale: 1 }}
-              initial={false}
+              // Removed the transition prop, as it's no longer needed for a spring animation on close.
             >
               <button
                 onClick={closeModal}
