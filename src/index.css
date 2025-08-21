@@ -1,1 +1,57 @@
 @import "tailwindcss";
+
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Responsive Table Styles */
+@media (max-width: 767px) {
+  .responsive-table thead {
+    @apply hidden;
+  }
+  .responsive-table tr {
+    @apply block mb-6 border border-gray-200 dark:border-gray-700 rounded-lg p-4;
+  }
+  .responsive-table td {
+    @apply block text-right border-b border-gray-200 dark:border-gray-700 py-3 px-2;
+  }
+  .responsive-table td:last-child {
+    @apply border-b-0;
+  }
+  .responsive-table td::before {
+    content: attr(data-label);
+    @apply float-left font-semibold text-gray-800 dark:text-gray-200 pr-4;
+  }
+}

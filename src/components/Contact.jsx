@@ -1,12 +1,24 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import Section from './ui/Section';
+import Container from './ui/Container';
 
 const Contact = () => {
+  const titleRef = useRef(null);
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 });
+
   return (
-    <section id="contact" className="py-15 bg-gray-50 dark:bg-gray-900 ">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-14 text-gray-900 dark:text-white">
+    <Section id="contact" padding="py-20" background="bg-gray-50 dark:bg-gray-900">
+      <Container>
+        <motion.h2
+          ref={titleRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isTitleInView ? 1 : 0, y: isTitleInView ? 0 : 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-14 text-gray-900 dark:text-white">
           Contact <span className="text-blue-600 dark:text-blue-400">Us</span>
-        </h2>
+        </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8 hover:shadow-2xl transition-shadow duration-300">
@@ -71,8 +83,8 @@ const Contact = () => {
             ></iframe>
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

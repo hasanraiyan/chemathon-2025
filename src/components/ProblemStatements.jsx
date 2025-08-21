@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import Section from './ui/Section';
+import Container from './ui/Container';
 
 // This component displays a list of Sustainable Development Goal (SDG) problem statements.
 // Clicking a card opens a full-screen modal with more details.
-// The modal now closes instantly without a transition.
 export default function ProblemStatements() {
-  // We no longer need CLOSE_ANIM_DURATION or isClosing state since the animation is removed.
   const problems = [
     {
       id: 'sdg6',
@@ -32,9 +32,9 @@ export default function ProblemStatements() {
   ];
 
   const [selected, setSelected] = useState(null);
+  const titleRef = useRef(null);
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 });
 
-  // This effect ensures the background doesn't scroll when the modal is open.
-  // It now only depends on the `selected` state.
   useEffect(() => {
     document.body.style.overflow = selected ? 'hidden' : '';
     return () => (document.body.style.overflow = '');
@@ -61,22 +61,25 @@ export default function ProblemStatements() {
     visible: { opacity: 1, y: 0, transition: { ease: 'easeOut' } },
   };
 
-  // This function sets the selected problem to open the modal.
   function openCard(problem) {
     setSelected(problem);
   }
 
-  // This function now closes the modal instantly.
   function closeModal() {
     setSelected(null);
   }
 
   return (
-    <section id="problems" className="py-20 bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
+    <Section id="problems" background="bg-white dark:bg-gray-800">
+      <Container>
+        <motion.h2
+          ref={titleRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isTitleInView ? 1 : 0, y: isTitleInView ? 0 : 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-12">
           Problem <span className="text-blue-600 dark:text-blue-400">Statements</span>
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {problems.map(problem => (
@@ -94,7 +97,7 @@ export default function ProblemStatements() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
 
       {/* Modal / expanded view */}
       <AnimatePresence>
@@ -103,8 +106,7 @@ export default function ProblemStatements() {
             className="fixed inset-0 z-50 flex items-start justify-center p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            // The modal now exits instantly without an animation
-            exit={{ opacity: 0, transition: { duration: 0 } }}
+            exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
           >
             {/* Backdrop */}
             <motion.div
@@ -112,14 +114,12 @@ export default function ProblemStatements() {
               onClick={closeModal}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              // The backdrop exits instantly as well
-              exit={{ opacity: 0, transition: { duration: 0 } }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
             />
 
             <motion.div
-              // Removed the layoutId prop to prevent the closing animation.
+              layoutId={selected.id}
               className="relative z-50 max-w-2xl w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl shadow-2xl p-8 overflow-auto max-h-[85vh]"
-              // Removed the transition prop, as it's no longer needed for a spring animation on close.
             >
               <button
                 onClick={closeModal}
@@ -157,6 +157,6 @@ export default function ProblemStatements() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </Section>
   );
 }
