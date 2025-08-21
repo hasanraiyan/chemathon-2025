@@ -103,8 +103,7 @@ export default function ProblemStatements() {
             className="fixed inset-0 z-50 flex items-start justify-center p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            // The modal now exits instantly without an animation
-            exit={{ opacity: 0, transition: { duration: 0 } }}
+            exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
           >
             {/* Backdrop */}
             <motion.div
@@ -112,8 +111,7 @@ export default function ProblemStatements() {
               onClick={closeModal}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              // The backdrop exits instantly as well
-              exit={{ opacity: 0, transition: { duration: 0 } }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
             />
 
             <motion.div

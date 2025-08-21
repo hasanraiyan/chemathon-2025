@@ -63,8 +63,8 @@ export default function FAQ() {
           </button>
 
           <div
-            className={`overflow-hidden transition-all duration-500 ease-in-out ${
-              openIndex === index ? "max-h-40 opacity-100 translate-x-0" : "max-h-0 opacity-0 -translate-x-10"
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              openIndex === index ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
             }`}
           >
             <p className="mt-3 pl-4 border-l-4 border-red-500 text-gray-600 dark:text-gray-300">

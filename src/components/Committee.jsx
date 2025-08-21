@@ -3,33 +3,33 @@ import React from "react";
 
 const committeeData = {
   organizingCommittee: [
-    { name: "Y", role: "Chief Patron", designation: "President, Indian Chemical Society" },
-    { name: "X", role: "Patron", designation: "Principal, KEC" },
+    { name: "To Be Announced", role: "Chief Patron", designation: "President, Indian Chemical Society" },
+    { name: "To Be Announced", role: "Patron", designation: "Principal, KEC" },
   ],
 
   studentOrganizingCommittee: [
-    { name: "X", designation: "Secretary" },
-    { name: "Y", designation: "Vice Secretary" },
+    { name: "To Be Announced", designation: "Secretary" },
+    { name: "To Be Announced", designation: "Vice Secretary" },
   ],
 
   iicheNationalAdvisory: [
-    { name: "X", designation: "Advisor - Policy & Outreach" },
-    { name: "Y", designation: "Advisor - Research & Innovation" },
+    { name: "To Be Announced", designation: "Advisor - Policy & Outreach" },
+    { name: "To Be Announced", designation: "Advisor - Research & Innovation" },
   ],
 
   icsNationalAdvisory: [
-    { name: "X", designation: "Chairman" },
-    { name: "Y", designation: "Member" },
+    { name: "To Be Announced", designation: "Chairman" },
+    { name: "To Be Announced", designation: "Member" },
   ],
 
   technicalAdvisoryCommittee: [
-    { name: "X", designation: "Technical Lead" },
-    { name: "Y", designation: "Subject Expert" },
+    { name: "To Be Announced", designation: "Technical Lead" },
+    { name: "To Be Announced", designation: "Subject Expert" },
   ],
 
   localExecutiveCommittee: [
-    { name: "X" },
-    { name: "Y" },
+    { name: "To Be Announced" },
+    { name: "To Be Announced" },
   ],
 };
 
