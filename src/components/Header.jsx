@@ -8,7 +8,9 @@ const Header = ({ toggleTheme, theme }) => {
     <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="#home" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-          <span>IIChE</span>-ChEMATHON
+          <span className="text-white">IIChE-</span>
+<span className="text-blue-500">ChEMATHON</span>
+
         </a>
         <nav className="hidden md:flex space-x-6">
           <a href="#home" className="hover:text-blue-600">Home</a>
