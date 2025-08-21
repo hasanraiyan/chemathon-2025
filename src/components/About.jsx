@@ -1,18 +1,45 @@
+import React, { useRef } from "react";
+import { motion, useInView } from 'framer-motion';
 import galleryImg1 from "./../assets/galleryfinal.jpeg";
 import galleryImg2 from "./../assets/gallery1.jpeg";
+import Section from './ui/Section';
+import Container from './ui/Container';
 
 const About = () => {
-  return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <h2 className="text-4xl font-bold text-center mb-12 text-blue-600 dark:text-blue-400">
-          About
-        </h2>
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const titleRef = useRef(null);
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 });
 
-        <div className="flex flex-col md:flex-row items-center gap-10">
-          {/* Image */}
-          <div className="md:w-1/2 flex flex-col justify-center items-center gap-5 bg-white dark:bg-gray-800 p-6 rounded-xl">
+  const imageVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  return (
+    <Section id="about" background="bg-white dark:bg-gray-800">
+      <Container>
+        <motion.h2
+          ref={titleRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isTitleInView ? 1 : 0, y: isTitleInView ? 0 : 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-12 text-blue-600 dark:text-blue-400">
+          About
+        </motion.h2>
+
+        <div ref={ref} className="flex flex-col md:flex-row items-center gap-10">
+          <motion.div
+            className="md:w-1/2 flex flex-col justify-center items-center gap-5 bg-white dark:bg-gray-800 p-6 rounded-xl"
+            variants={imageVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             <img
               src={galleryImg1}
               alt="Chemathon 2026"
@@ -23,10 +50,14 @@ const About = () => {
               alt="Innovation 2026"
               className="rounded-xl shadow-lg transform hover:scale-103 transition duration-500"
             />
-          </div>
+          </motion.div>
 
-          {/* Text */}
-          <div className="md:w-1/2 text-center md:text-left">
+          <motion.div
+            className="md:w-1/2 text-center md:text-left"
+            variants={textVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             <h2 className="text-3xl font-bold mb-6">
               <span className="dark:text-white">IIChE-ChEMATHON 2026</span>
             </h2>
@@ -89,7 +120,6 @@ const About = () => {
               .
             </p>
 
-            {/* Quote Section */}
             <blockquote className="border-l-4 border-blue-600 pl-4 italic text-gray-600 dark:text-gray-300 text-lg">
               “Innovation is the key to realizing the dream of an{" "}
               <span className="font-semibold text-blue-500">
@@ -101,10 +131,10 @@ const About = () => {
             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-right">
               — Shri Narendra Modi, Hon’ble Prime Minister of India
             </p>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

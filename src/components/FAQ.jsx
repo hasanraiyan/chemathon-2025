@@ -1,6 +1,9 @@
 // FAQ Component
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import Section from './ui/Section';
+import Container from './ui/Container';
 
 const faqs = [
   {
@@ -34,45 +37,62 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
+  const titleRef = useRef(null);
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 });
 
   return (
-    <section className="max-w-4xl mx-auto py-12 px-6">
-      <h2 className="text-4xl font-bold text-center mb-12 text-blue-600 dark:text-blue-400">
-        FAQ'S
-      </h2>
-      {faqs.map((faq, index) => (
-        <div key={index} className="border-b py-4">
-          <button
-            onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="flex justify-between items-center w-full text-left transition-colors duration-300"
-          >
-            <span
-              className={`text-lg font-semibold transition-colors duration-300 ${
-                openIndex === index
-                  ? "text-red-600"
-                  : "text-gray-900 dark:text-gray-100 hover:text-red-500"
-              }`}
-            >
-              {faq.question}
-            </span>
-            {openIndex === index ? (
-              <ChevronUp className="w-5 h-5 text-red-600 transition-transform duration-300" />
-            ) : (
-              <ChevronDown className="w-5 h-5 text-gray-500 group-hover:text-red-500 transition-transform duration-300" />
-            )}
-          </button>
+    <Section id="faq" background="bg-white dark:bg-gray-800" padding="py-20">
+      <Container maxWidth="max-w-4xl">
+        <motion.h2
+          ref={titleRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isTitleInView ? 1 : 0, y: isTitleInView ? 0 : 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-12 text-blue-600 dark:text-blue-400">
+          Frequently Asked Questions
+        </motion.h2>
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <motion.div key={index} layout className="border-b dark:border-gray-700 pb-4">
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="flex justify-between items-center w-full text-left transition-colors duration-300 group"
+              >
+                <span
+                  className={`text-lg font-semibold transition-colors duration-300 ${
+                    openIndex === index
+                      ? "text-primary dark:text-primary-light"
+                      : "text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-primary-light"
+                  }`}
+                >
+                  {faq.question}
+                </span>
+                {openIndex === index ? (
+                  <ChevronUp className="w-5 h-5 text-primary dark:text-primary-light transition-transform duration-300" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-gray-500 group-hover:text-primary dark:group-hover:text-primary-light transition-transform duration-300" />
+                )}
+              </button>
 
-          <div
-            className={`overflow-hidden transition-all duration-300 ease-in-out ${
-              openIndex === index ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-            }`}
-          >
-            <p className="mt-3 pl-4 border-l-4 border-red-500 text-gray-600 dark:text-gray-300">
-              {faq.answer}
-            </p>
-          </div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <p className="mt-3 pl-4 border-l-4 border-accent text-gray-600 dark:text-gray-300">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
         </div>
-      ))}
-    </section>
+      </Container>
+    </Section>
   );
 }
