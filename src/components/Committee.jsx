@@ -2,6 +2,7 @@
 import React from "react";
 import Section from './ui/Section';
 import Container from './ui/Container';
+import ScrollReveal from './ui/ScrollReveal';
 
 const committeeData = {
   organizingCommittee: [
@@ -63,76 +64,90 @@ export default function Committee() {
   return (
     <Section id="committee" background="bg-gray-100 dark:bg-gray-900">
       <Container maxWidth="max-w-5xl" className="text-center">
-        <h2 className="text-4xl font-bold mb-12">
-          Organizing <span className="text-blue-600 dark:text-blue-400">Committee</span>
-        </h2>
+        <ScrollReveal>
+          <h2 className="text-4xl font-bold mb-12">
+            Organizing <span className="text-blue-600 dark:text-blue-400">Committee</span>
+          </h2>
+        </ScrollReveal>
 
         {/* Organizing */}
-        <SectionTable
-          columns={[
-            { key: "name", label: "Name" },
-            { key: "role", label: "Role" },
-            { key: "designation", label: "Designation" },
-          ]}
-          rows={committeeData.organizingCommittee}
-        />
+        <ScrollReveal delay={0.1}>
+          <SectionTable
+            columns={[
+              { key: "name", label: "Name" },
+              { key: "role", label: "Role" },
+              { key: "designation", label: "Designation" },
+            ]}
+            rows={committeeData.organizingCommittee}
+          />
+        </ScrollReveal>
 
         {/* Student */}
-        <h3 className="text-2xl font-bold text-center mb-6 mt-12">
-          Student <span className="text-blue-600 dark:text-blue-400">Organizing Committee</span>
-        </h3>
-        <SectionTable
-          columns={[
-            { key: "name", label: "Name" },
-            { key: "designation", label: "Designation" },
-          ]}
-          rows={committeeData.studentOrganizingCommittee}
-        />
+        <ScrollReveal delay={0.2}>
+          <h3 className="text-2xl font-bold text-center mb-6 mt-12">
+            Student <span className="text-blue-600 dark:text-blue-400">Organizing Committee</span>
+          </h3>
+          <SectionTable
+            columns={[
+              { key: "name", label: "Name" },
+              { key: "designation", label: "Designation" },
+            ]}
+            rows={committeeData.studentOrganizingCommittee}
+          />
+        </ScrollReveal>
 
         {/* IIChE National */}
-        <h3 className="text-2xl font-bold text-center mb-6 mt-12">
-          IIChE - <span className="text-blue-600 dark:text-blue-400">National Advisory Committee</span>
-        </h3>
-        <SectionTable
-          columns={[
-            { key: "name", label: "Name" },
-            { key: "designation", label: "Designation" },
-          ]}
-          rows={committeeData.iicheNationalAdvisory}
-        />
+        <ScrollReveal delay={0.3}>
+          <h3 className="text-2xl font-bold text-center mb-6 mt-12">
+            IIChE - <span className="text-blue-600 dark:text-blue-400">National Advisory Committee</span>
+          </h3>
+          <SectionTable
+            columns={[
+              { key: "name", label: "Name" },
+              { key: "designation", label: "Designation" },
+            ]}
+            rows={committeeData.iicheNationalAdvisory}
+          />
+        </ScrollReveal>
 
         {/* ICS National */}
-        <h3 className="text-2xl font-bold text-center mb-6 mt-12">
-          ICS - <span className="text-blue-600 dark:text-blue-400">National Advisory Committee</span>
-        </h3>
-        <SectionTable
-          columns={[
-            { key: "name", label: "Name" },
-            { key: "designation", label: "Designation" },
-          ]}
-          rows={committeeData.icsNationalAdvisory}
-        />
+        <ScrollReveal delay={0.4}>
+          <h3 className="text-2xl font-bold text-center mb-6 mt-12">
+            ICS - <span className="text-blue-600 dark:text-blue-400">National Advisory Committee</span>
+          </h3>
+          <SectionTable
+            columns={[
+              { key: "name", label: "Name" },
+              { key: "designation", label: "Designation" },
+            ]}
+            rows={committeeData.icsNationalAdvisory}
+          />
+        </ScrollReveal>
 
         {/* Technical */}
-        <h3 className="text-2xl font-bold text-center mb-6 mt-12">
-          Technical <span className="text-blue-600 dark:text-blue-400">Advisory Committee</span>
-        </h3>
-        <SectionTable
-          columns={[
-            { key: "name", label: "Name" },
-            { key: "designation", label: "Designation" },
-          ]}
-          rows={committeeData.technicalAdvisoryCommittee}
-        />
+        <ScrollReveal delay={0.5}>
+          <h3 className="text-2xl font-bold text-center mb-6 mt-12">
+            Technical <span className="text-blue-600 dark:text-blue-400">Advisory Committee</span>
+          </h3>
+          <SectionTable
+            columns={[
+              { key: "name", label: "Name" },
+              { key: "designation", label: "Designation" },
+            ]}
+            rows={committeeData.technicalAdvisoryCommittee}
+          />
+        </ScrollReveal>
 
         {/* Local */}
-        <h3 className="text-2xl font-bold text-center mb-6 mt-12">
-          Local <span className="text-blue-600 dark:text-blue-400">Executive Committee</span>
-        </h3>
-        <SectionTable
-          columns={[{ key: "name", label: "Name" }]}
-          rows={committeeData.localExecutiveCommittee}
-        />
+        <ScrollReveal delay={0.6}>
+          <h3 className="text-2xl font-bold text-center mb-6 mt-12">
+            Local <span className="text-blue-600 dark:text-blue-400">Executive Committee</span>
+          </h3>
+          <SectionTable
+            columns={[{ key: "name", label: "Name" }]}
+            rows={committeeData.localExecutiveCommittee}
+          />
+        </ScrollReveal>
       </Container>
     </Section>
   );
