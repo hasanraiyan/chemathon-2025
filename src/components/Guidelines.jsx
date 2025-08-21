@@ -1,50 +1,120 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import {
+  Users,
+  Mail,
+  Video,
+  MapPin,
+  Trophy,
+  CalendarDays,
+} from "lucide-react";
 
-// Guidelines Component
+const points = [
+  {
+    title:
+      "Teams can have a maximum of 5 members, including 1 compulsory female participant and 1 mentor.",
+    icon: Users,
+    grad: "from-pink-500 to-rose-500",
+  },
+  {
+    title:
+      "Shortlisted teams will receive an email with the template. Prelims will be conducted online in the evening.",
+    icon: Mail,
+    grad: "from-amber-500 to-yellow-500",
+  },
+  {
+    title:
+      "36-hour finale at Kongu Engineering College; 42 teams (7 per SDG) from 28.02.2025 onwards.",
+    icon: MapPin,
+    grad: "from-emerald-500 to-green-500",
+  },
+  {
+    title:
+      "Grand Finale presentation on 02.03.2025 evening; 12 teams (2 per SDG). Prizes: ₹1 Lakh, ₹50K, ₹30K.",
+    icon: Trophy,
+    grad: "from-indigo-500 to-violet-500",
+  },
+];
+
+const timeline = [
+  { dateISO: "2024-12-26", date: "26/12/2024", label: "Idea Submission Opening", grad: "from-sky-500 to-blue-500" },
+  { dateISO: "2025-01-15", date: "15/01/2025", label: "Idea Submission Closing", grad: "from-fuchsia-500 to-pink-500" },
+  { dateISO: "2025-01-20", date: "20/01/2025", label: "Prelims for CheMATHON", grad: "from-amber-500 to-orange-500" },
+  { dateISO: "2025-01-20", date: "20/01/2025", label: "Shortlist Announcement", grad: "from-teal-500 to-emerald-500" },
+  { dateISO: "2025-01-25", date: "25/01/2025", label: "Registration Opening", grad: "from-purple-500 to-violet-500" },
+  { dateISO: "2025-01-31", date: "31/01/2025", label: "Registration Closing", grad: "from-rose-500 to-red-500" },
+  { dateISO: "2025-02-28", date: "28/02/2025 – 02/03/2025", label: "Finals", grad: "from-cyan-500 to-teal-500" },
+];
+
 const Guidelines = () => {
   return (
-    <section id="guidelines" className="py-20 bg-gray-100 dark:bg-gray-900">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Event <span className="text-blue-600 dark:text-blue-400">Guidelines</span></h2>
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="md:w-1/2">
-            <ul className="space-y-4 text-lg">
-              <li className="flex items-start">
-                <span className="text-blue-600 dark:text-blue-400 font-bold mr-2">1.</span>
-                <span>Teams can have a maximum of 5 members, including 1 compulsory female participant and 1 mentor.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 dark:text-blue-400 font-bold mr-2">2.</span>
-                <span>Shortlisted teams will be notified via email for the online prelims.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 dark:text-blue-400 font-bold mr-2">3.</span>
-                <span>The 36-hour finale will be held at Kongu Engineering College.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 dark:text-blue-400 font-bold mr-2">4.</span>
-                <span>The grand finale presentation will take place on March 2nd, 2025.</span>
-              </li>
-            </ul>
-          </div>
-          <div className="md:w-1/2">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-4">Important Dates</h3>
-              <ul className="space-y-2">
-                <li><strong>Idea Submission Opening:</strong> Dec 26, 2024</li>
-                <li><strong>Idea Submission Closing:</strong> Jan 15, 2025</li>
-                <li><strong>Prelims:</strong> Jan 20, 2025</li>
-                <li><strong>Registration Opening:</strong> Jan 25, 2025</li>
-                <li><strong>Registration Closing:</strong> Jan 31, 2025</li>
-                <li><strong>Finals:</strong> Feb 28 - Mar 2, 2025</li>
-              </ul>
+    <section id="guidelines" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="mx-auto max-w-6xl px-6">
+        {/* Heading */}
+        <div className="text-center mb-12">
+         
+          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            Event <span className="text-blue-600 dark:text-blue-400">Guidelines</span>
+          </h2>
+          
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10 items-start">
+         
+          <ol className="space-y-5">
+            {points.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <li key={i} className="list-none">
+                  <div className={`bg-gradient-to-br ${p.grad} p-[1px] rounded-2xl transition-transform hover:-translate-y-0.5 hover:shadow-xl`}>
+                    <div className="rounded-2xl bg-white dark:bg-gray-800 p-5 flex gap-4 items-start">
+                      <div className={`h-11 w-11 rounded-xl flex items-center justify-center text-white bg-gradient-to-br ${p.grad} shadow-lg`}>
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <span className="inline-block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">
+                          {i + 1}
+                        </span>
+                        <p className="text-lg leading-relaxed text-gray-800 dark:text-gray-200">
+                          {p.title}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+
+          
+
+         
+           <div className="relative">
+            <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-sky-400 to-cyan-400 opacity-60" />
+            <div className="space-y-4">
+              {timeline.map((t, idx) => (
+                <div key={idx} className="relative pl-12">
+                 
+                  <span
+                    className={`absolute left-2 top-2 h-5 w-5 rounded-full bg-white dark:bg-gray-900 ring-4 ring-offset-2 ring-offset-white dark:ring-offset-gray-900 bg-gradient-to-br ${t.grad}`}
+                  />
+                  
+                  <time
+                    className={`inline-block rounded-full px-2 py-0.5 text-xs font-semibold text-white bg-gradient-to-r ${t.grad}`}
+                  >
+                    {t.date}
+                  </time>
+                  
+                  <div className="mt-2 rounded-lg border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-3 hover:shadow-md transition-shadow">
+                    <p className="text-sm">{t.label}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </div>
+       </div>
     </section>
   );
 };
-
 
 export default Guidelines;
