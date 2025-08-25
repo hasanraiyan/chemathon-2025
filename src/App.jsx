@@ -12,6 +12,7 @@ import Sponsors from './components/Sponsors';
 import Committee from './components/Committee';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BackToTopButton from './components/ui/BackToTopButton';
 
 
 // Main App Component
@@ -46,6 +47,7 @@ const App = () => {
         <Contact />
       </main>
       <Footer />
+      <BackToTopButton />
     </div>
   );
 };
