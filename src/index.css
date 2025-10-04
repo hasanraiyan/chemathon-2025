@@ -5,6 +5,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ensure dark mode works properly */
+html.dark {
+  color-scheme: dark;
+}
+
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
   width: 8px;

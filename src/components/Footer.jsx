@@ -3,6 +3,7 @@ import { Linkedin, Github, Instagram } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Terms from './Terms';
 import Privacy from './Privacy';
+import { EVENT_CONFIG } from '../config/constants';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -24,18 +25,8 @@ export default function Footer() {
               
               <div className="mt-4 flex items-center gap-3">
                 <a
-                  aria-label="GitHub"
-                  href="#"
-                  className="hover:opacity-80"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-                </a>
-
-                <a
                   aria-label="LinkedIn"
-                  href="#"
+                  href={EVENT_CONFIG.social.linkedin}
                   className="hover:opacity-80"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -45,12 +36,24 @@ export default function Footer() {
 
                 <a
                   aria-label="Instagram"
-                  href="#"
+                  href={EVENT_CONFIG.social.instagram}
                   className="hover:opacity-80"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Instagram className="w-5 h-5 text-gray-700 dark:text-gray-200" />
+                </a>
+
+                <a
+                  aria-label="Twitter"
+                  href={EVENT_CONFIG.social.twitter}
+                  className="hover:opacity-80"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg className="w-5 h-5 text-gray-700 dark:text-gray-200" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
                 </a>
               </div>
             </div>
@@ -70,7 +73,7 @@ export default function Footer() {
               <div>
                 <h5 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Support</h5>
                 <ul className="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                  <li><a href="mailto:team@mitmuzaffarpur.edu"  className="hover:underline">Contact: team@mitmuzaffarpur.edu</a></li> // email to be updated
+                  <li><a href={`mailto:${EVENT_CONFIG.contact.email}`} className="hover:underline">Contact: {EVENT_CONFIG.contact.email}</a></li>
                   <li><a href="#sponsors" className="hover:underline">Sponsors</a></li>
                   <li><a href="#volunteer" className="hover:underline">Volunteer</a></li>
                 </ul>
@@ -101,7 +104,7 @@ export default function Footer() {
               </button>
 
               <span className="text-gray-400">|</span>
-              <span className="text-gray-500 text-xs">v1.2 • last updated Aug 18, 2025</span>
+              <span className="text-gray-500 text-xs">v1.2 • last updated Oct 4, 2025</span>
             </div>
           </div>
         </div>

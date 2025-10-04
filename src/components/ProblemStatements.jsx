@@ -2,34 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Section from './ui/Section';
 import Container from './ui/Container';
+import { sdgProblems } from '../data/problems';
 
 // This component displays a list of Sustainable Development Goal (SDG) problem statements.
 // Clicking a card opens a full-screen modal with more details.
 export default function ProblemStatements() {
-  const problems = [
-    {
-      id: 'sdg6',
-      title: 'SDG6 - Clean Water and Sanitation',
-      icon: '💧',
-      details: [
-        'Design A Low-Cost, Portable Water Purification Device Using Sustainable Materials.',
-        'Develop An IoT-Based Water Quality Monitoring System For Rural Areas.',
-        'Innovate A Membrane Technology For Efficient Desalination With Reduced Energy Consumption.',
-        'Create A Smart Rainwater Harvesting System For Industrial Use.',
-        'Develop A Decentralized Wastewater Treatment System For Small Communities.',
-        'Design An Automatic Irrigation System Using Recycled Wastewater.',
-        'Create A Biosensor For Real-Time Monitoring Of Heavy Metals In Water.',
-        'Innovate A Compact System For Removing Microplastics From Wastewater.',
-        'Design A Self-Sustaining Sewage Treatment Unit Using Microbial Fuel Cells.',
-        'Create A Low-Energy, Solar-Powered System For Arsenic Removal From Groundwater.',
-      ],
-    },
-    { id: 'sdg7', title: 'SDG7 - Affordable and Clean Energy', icon: '☀️', details: ['Example idea 1', 'Example idea 2'] },
-    { id: 'sdg9', title: 'SDG9 - Industry, Innovation, and Infrastructure', icon: '🏭', details: ['Example A', 'Example B'] },
-    { id: 'sdg11', title: 'SDG11 - Sustainable Cities and Communities', icon: '🏙️', details: ['Example A', 'Example B'] },
-    { id: 'sdg12', title: 'SDG12 - Responsible Consumption and Production', icon: '♻️', details: ['Example A', 'Example B'] },
-    { id: 'sdg13', title: 'SDG13 - Climate Action', icon: '🌍', details: ['Example A', 'Example B'] },
-  ];
+  const problems = sdgProblems.map(sdg => ({
+    id: sdg.id,
+    title: sdg.title,
+    icon: sdg.icon,
+    details: sdg.details
+  }));
 
   const [selected, setSelected] = useState(null);
   const titleRef = useRef(null);

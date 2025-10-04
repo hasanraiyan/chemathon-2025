@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Calendar, MapPin } from 'lucide-react';
 import Button from './ui/Button';
+import { EVENT_CONFIG } from '../config/constants';
 
 // Countdown Timer Component
 const CountdownTimer = ({ targetDate }) => {
@@ -46,7 +47,7 @@ const CountdownTimer = ({ targetDate }) => {
 
 // Home Component
 const Home = () => {
-  const eventDate = new Date('2025-02-28T00:00:00').getTime();
+  const eventDate = new Date(EVENT_CONFIG.dates.start).getTime();
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -74,25 +75,25 @@ const Home = () => {
         >
           <p className="text-lg text-gray-200 mb-4">First Edition of IIChE-TI Hardware Hackathon</p>
           
-          <motion.h1 
+          <motion.h1
             className="text-4xl md:text-7xl font-bold mb-6"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            IIChE-ChEMATHON <span className="text-yellow-300">2025</span>
+            IIChE-ChEMATHON <span className="text-yellow-300">{EVENT_CONFIG.year}</span>
           </motion.h1>
           
-          <motion.h2 
+          <motion.h2
             className="text-xl md:text-3xl font-semibold mb-6 text-gray-100"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span className="text-yellow-300">THEME:</span> Redefining Progress Through Sustainable Solutions
+            <span className="text-yellow-300">THEME:</span> {EVENT_CONFIG.theme}
           </motion.h2>
           
-          <motion.div 
+          <motion.div
             className="flex flex-col md:flex-row justify-center items-center gap-6 mb-8 text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,11 +101,11 @@ const Home = () => {
           >
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-yellow-300" />
-              <span>28th Feb - 2nd March, 2025</span>
+              <span>{EVENT_CONFIG.dates.display}</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-yellow-300" />
-              <span>Kongu Engineering College, Tamil Nadu</span>
+              <span>{EVENT_CONFIG.venue.name}, {EVENT_CONFIG.venue.location}</span>
             </div>
           </motion.div>
 

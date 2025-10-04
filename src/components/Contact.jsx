@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Section from './ui/Section';
 import Container from './ui/Container';
+import { EVENT_CONFIG } from '../config/constants';
 
 const Contact = () => {
   const titleRef = useRef(null);
@@ -28,11 +29,10 @@ const Contact = () => {
 
             <div className="space-y-1 text-gray-700 dark:text-gray-300">
               <p className="font-medium">The Organising Secretary</p>
-              <p>IIChE - ChEMATHON 2025</p>
+              <p>IIChE - ChEMATHON {EVENT_CONFIG.year}</p>
               <p>Department of Chemical Engineering</p>
-              <p>Kongu Engineering College</p>
-              <p>Perundurai, Erode - 638060</p>
-              <p>Tamil Nadu, India</p>
+              <p>{EVENT_CONFIG.venue.name}</p>
+              <p>{EVENT_CONFIG.venue.location}</p>
             </div>
 
             <div className="mt-6 space-y-3">
@@ -42,23 +42,23 @@ const Contact = () => {
                 <span className="text-gray-900 dark:text-white font-semibold">
                   Phone:
                 </span>
-                <span>+91 98428 23432, +91 97503 83957</span>
+                <span>{EVENT_CONFIG.contact.phone.join(', ')}</span>
               </p>
 
               <p className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                 <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <a
-                  href="mailto:info@yourwebsite.com"
+                  href={`mailto:${EVENT_CONFIG.contact.email}`}
                   className="hover:text-blue-800 dark:hover:text-blue-400 underline font-medium"
                   aria-label="Send email"
                 >
-                  info@yourwebsite.com
+                  {EVENT_CONFIG.contact.email}
                 </a>
               </p>
 
               <p className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                 <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                <span>Kongu Engineering College, Perundurai</span>
+                <span>{EVENT_CONFIG.venue.name}, {EVENT_CONFIG.venue.shortLocation}</span>
               </p>
             </div>
           </div>
@@ -71,7 +71,7 @@ const Contact = () => {
 
             <iframe
               title="Google Map Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1193.301292434001!2d77.60650500877561!3d11.272611141769897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96d787153ee27%3A0x71bd1b7928ab4e35!2sDepartment%20of%20Chemical%20Engineering%2C%20KEC!5e1!3m2!1sen!2sin!4v1733844541408!5m2!1sen!2sin%22width=%22100%"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.599!2d85.398!3d26.120!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed11f8b8b8b8b8%3A0x8b8b8b8b8b8b8b8b!2sMIT%20Muzaffarpur!5e0!3m2!1sen!2sin!4v1698765432100!5m2!1sen!2sin"
               width="100%"
               height="350"
               style={{ border: 0 }}
@@ -79,7 +79,7 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="rounded-2xl shadow-md"
-              aria-label="Map showing Kongu Engineering College location"
+              aria-label="Map showing MIT Muzaffarpur location"
             ></iframe>
           </div>
         </div>

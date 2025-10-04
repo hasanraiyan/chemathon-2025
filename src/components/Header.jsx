@@ -91,8 +91,11 @@ const Header = ({ toggleTheme, theme }) => {
             <Button href="#registrations" variant="outline" size="sm">
               Register Now
             </Button>
-            <button 
-              onClick={toggleTheme} 
+            <button
+              onClick={() => {
+                console.log('Theme toggle button clicked, current theme:', theme);
+                toggleTheme();
+              }}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             >
@@ -102,8 +105,11 @@ const Header = ({ toggleTheme, theme }) => {
           
           {/* Mobile Menu Trigger */}
           <div className="flex md:hidden items-center">
-            <button 
-              onClick={toggleTheme} 
+            <button
+              onClick={() => {
+                console.log('Mobile theme toggle button clicked, current theme:', theme);
+                toggleTheme();
+              }}
               className="mr-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             >
