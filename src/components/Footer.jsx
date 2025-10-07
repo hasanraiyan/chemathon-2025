@@ -70,7 +70,8 @@ export default function Footer() {
               <div>
                 <h5 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Support</h5>
                 <ul className="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                  <li><a href="mailto:team@mitmuzaffarpur.edu"  className="hover:underline">Contact: team@mitmuzaffarpur.edu</a></li> // email to be updated
+                  <li><a href="mailto:team@mitmuzaffarpur.edu"  className="hover:underline">Contact: team@mitmuzaffarpur.edu</a></li> 
+                  {/* email to be updated */}
                   <li><a href="#sponsors" className="hover:underline">Sponsors</a></li>
                   <li><a href="#volunteer" className="hover:underline">Volunteer</a></li>
                 </ul>
@@ -99,9 +100,6 @@ export default function Footer() {
               >
                 Terms
               </button>
-
-              <span className="text-gray-400">|</span>
-              <span className="text-gray-500 text-xs">v1.2 • last updated Aug 18, 2025</span>
             </div>
           </div>
         </div>
