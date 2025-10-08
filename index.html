@@ -1,10 +1,11 @@
+
 <!-- ==========================================
      FILE: index.html
      DESCRIPTION: Main HTML file for ChEMATHON 2026 website (DRY Principle Applied)
      COMPONENTS: Header, Navigation, Hero Section, About, Themes, Prizes, Timeline, Gallery, Registration, FAQ, Contact, Footer
      DEPENDENCIES: Tailwind CSS, Font Awesome, Animate.css, Google Fonts, Swiper, Particles.js
      LAST UPDATED: 2025-10-08
-     VERSION: 2.1.0 (Fixed Icons and Added Logging)
+     VERSION: 2.2.0 (Light Mode UI/UX Enhancement)
      ========================================== -->
 
 <!DOCTYPE html>
@@ -118,6 +119,14 @@
                 background-position: 100% 50%;
             }
         }
+        
+        /* FIX: Improved text readability in light mode for neon colors */
+        [data-theme="light"] .text-neon-pink,
+        [data-theme="light"] .text-neon-cyan,
+        [data-theme="light"] .text-neon-yellow,
+        [data-theme="light"] .text-neon-purple {
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+        }
 
         /* ==========================================
                   NEON BOX EFFECTS
@@ -134,14 +143,15 @@
             transform: translateY(-10px) scale(1.02);
         }
 
+        /* FIX: Enhanced neon glow visibility in light mode */
         [data-theme="light"] .neon-box {
-            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3),
-                0 0 40px rgba(78, 205, 196, 0.2);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.4),
+                0 0 40px rgba(78, 205, 196, 0.3);
         }
 
         [data-theme="light"] .neon-box:hover {
-            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5),
-                0 0 60px rgba(78, 205, 196, 0.4);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.6),
+                0 0 60px rgba(78, 205, 196, 0.5);
         }
 
         /* ==========================================
@@ -156,8 +166,9 @@
             z-index: -1;
         }
 
+        /* FIX: Increased particle background visibility in light mode */
         [data-theme="light"] .particle-bg {
-            opacity: 0.4;
+            opacity: 0.7;
         }
 
         /* ==========================================
@@ -1795,8 +1806,7 @@
             // THEME TOGGLE FUNCTIONALITY
             // ==========================================
             const html = document.documentElement;
-            const themeToggles = document.querySelectorAll('.theme-toggle'); // Use class selector
-
+            
             console.log('Setting up theme toggle functionality...');
             const savedTheme = localStorage.getItem('theme') || 'dark';
             html.setAttribute('data-theme', savedTheme);
@@ -1819,19 +1829,25 @@
             }
 
             function updateParticles(theme) {
-                const particleColor = theme === 'dark' ? '#FF6B6B' : '#667eea';
+                // FIX: Defined separate color palettes for dark and light themes for better visibility
+                const isDark = theme === 'dark';
+                const particleColors = isDark ? ['#FF6B6B', '#4ECDC4', '#FFE66D'] : ['#4A5568', '#DD6B20', '#3182CE'];
+                const linkColor = isDark ? '#FF6B6B' : '#4A5568';
+                const particleOpacity = isDark ? 0.5 : 0.6;
+                const linkOpacity = isDark ? 0.2 : 0.4;
+                
                 particlesJS('particles-js', {
                     particles: {
                         number: { value: 60, density: { enable: true, value_area: 800 } },
-                        color: { value: [particleColor, '#4ECDC4', '#FFE66D'] },
+                        color: { value: particleColors },
                         shape: { type: 'circle' },
-                        opacity: { value: theme === 'dark' ? 0.5 : 0.3, random: true },
+                        opacity: { value: particleOpacity, random: true },
                         size: { value: 3, random: true },
                         line_linked: {
                             enable: true,
                             distance: 150,
-                            color: particleColor,
-                            opacity: theme === 'dark' ? 0.2 : 0.15,
+                            color: linkColor,
+                            opacity: linkOpacity,
                             width: 1
                         },
                         move: { enable: true, speed: 2, direction: 'none', random: true, out_mode: 'out' }
@@ -1846,7 +1862,7 @@
                 });
             }
 
-            // Re-attach event listeners after innerHTML is updated
+            // Use event delegation for the theme toggle
             document.body.addEventListener('click', function(event) {
                 if (event.target.closest('.theme-toggle')) {
                     toggleTheme();
