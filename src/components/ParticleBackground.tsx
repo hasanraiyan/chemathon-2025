@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { type Theme } from '../App';
+import { type Theme } from '../../App';
 
 // Inform TypeScript that particlesJS exists on the window object
 declare const particlesJS: any;

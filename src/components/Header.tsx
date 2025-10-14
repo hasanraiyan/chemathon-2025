@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
-import { type Theme } from '../App';
+import { type Theme } from '../../App';
 
 interface HeaderProps {
   theme: Theme;

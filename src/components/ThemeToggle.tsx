@@ -1,6 +1,5 @@
 import React from 'react';
-import { type Theme } from '../App';
-
+import { type Theme } from '../../App';
 interface ThemeToggleProps {
   theme: Theme;
   toggleTheme: () => void;
