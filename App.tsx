@@ -1,51 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import Header from './src/components/Header';
-import ParticleBackground from './src/components/ParticleBackground';
-import Hero from './src/components/Hero';
-import Sponsors from './src/components/Sponsors';
-import About from './src/components/About';
-import Themes from './src/components/Themes';
-import Prizes from './src/components/Prizes';
-import Timeline from './src/components/Timeline';
-import Gallery from './src/components/Gallery';
-import Registration from './src/components/Registration';
-import Faq from './src/components/Faq';
-import Contact from './src/components/Contact';
-import Footer from './src/components/Footer';
-
-export type Theme = 'light' | 'dark';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import About from './components/About';
+import Process from './components/Process';
+import Themes from './components/Themes';
+import Gallery from './components/Gallery';
+import Testimonials from './components/Testimonials';
+import Registration from './components/Registration';
+import FAQ from './components/FAQ';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import Schedule from './components/Schedule';
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>('dark');
-
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const initialTheme = savedTheme || 'dark';
-    setTheme(initialTheme);
-    document.documentElement.setAttribute('data-theme', initialTheme);
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
   }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  };
 
   return (
     <>
-      <ParticleBackground theme={theme} />
-      <Header theme={theme} toggleTheme={toggleTheme} />
+      <Header />
       <main>
         <Hero />
-        <Sponsors />
         <About />
+        <Process />
         <Themes />
-        <Prizes />
-        <Timeline />
         <Gallery />
+        <Schedule />
+        <Testimonials />
         <Registration />
-        <Faq />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
